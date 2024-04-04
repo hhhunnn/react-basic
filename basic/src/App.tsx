@@ -11,6 +11,10 @@ import './App.css';
 // Component, Sample 다른 파일에 있을 경우
 import Component from './component/Component';
 import Sample from './component/Sample';
+import SignInContainer from './component/example/SingInContainer';
+import CurlyBraces from './component/CurlyBraces';
+import Properties from './component_manage/Properties';
+import SignUpContainer from './component_manage/example/SingInContainer';
 
 
 // JSX / TSX : 
@@ -86,8 +90,17 @@ function App() {
       {/* <ClassComponent />
       <FunctionComponent /> */}
 
-      <Component />
-      <Sample />
+      {/* <Component />
+      <Sample /> */}
+
+      {/* <SignInContainer /> */}
+
+      {/* <CurlyBraces />*/}
+
+      {/* <Properties /> */}
+
+      <SignUpContainer />
+
     </div>
   );
 }
