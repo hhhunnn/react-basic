@@ -30,7 +30,7 @@ import Sample from './component/Sample';
 // 1. class component
 // class로 컴포넌트를 작성
 // 반드시 클래스명 첫글자는 대문자로 작성
-// react 패키지에 있는 Component 클래슬르 상속하여 구현
+// react 패키지에 있는 Component 클래스를 상속하여 구현
 // render() 함수의 반환값으로 렌더링하고자 하는 요소를 지정
 class ClassComponent extends React.Component {
   // 함수 작성(render()만 쳐도 자동완성됨)

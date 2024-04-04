@@ -13,6 +13,8 @@ import App from './App';
 // 6. // If ~~ 아래 코드를 제거
 // 7. index.css에서 code 태그 스타일 제거
 
+
+// index.html (root)
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
