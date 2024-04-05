@@ -11,10 +11,12 @@ import './App.css';
 // Component, Sample 다른 파일에 있을 경우
 import Component from './component/Component';
 import Sample from './component/Sample';
-import SignInContainer from './component/example/SingInContainer';
+// import SignInContainer from './component/example/SingInContainer';
 import CurlyBraces from './component/CurlyBraces';
 import Properties from './component_manage/Properties';
-import SignUpContainer from './component_manage/example/SingInContainer';
+import SignInContainer from './component_manage/example/SingInContainer';
+import ConditionalRendering from './component_manage/example/ConditionalRendering';
+import ListRendering from './component_manage/ListRendering';
 
 
 // JSX / TSX : 
@@ -99,7 +101,11 @@ function App() {
 
       {/* <Properties /> */}
 
-      <SignUpContainer />
+      <SignInContainer />
+
+      {/* <ConditionalRendering /> */}
+
+      {/* <ListRendering /> */}
 
     </div>
   );
