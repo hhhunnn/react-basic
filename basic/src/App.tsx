@@ -17,6 +17,8 @@ import Properties from './component_manage/Properties';
 import SignInContainer from './component_manage/example/SingInContainer';
 import ConditionalRendering from './component_manage/example/ConditionalRendering';
 import ListRendering from './component_manage/ListRendering';
+import EventComponent from './interaction/EventComponent';
+import StateComponent from './interaction/StateComponent';
 
 
 // JSX / TSX : 
@@ -88,7 +90,7 @@ function FunctionComponent () {
 // index.tsx 파일 보면 root 안에 App이 있기때문에 출력가능함
 function App() {
   return (
-    <div>
+    <>
       {/* <ClassComponent />
       <FunctionComponent /> */}
 
@@ -101,13 +103,17 @@ function App() {
 
       {/* <Properties /> */}
 
-      <SignInContainer />
+      {/* <SignInContainer /> */}
 
       {/* <ConditionalRendering /> */}
 
       {/* <ListRendering /> */}
 
-    </div>
+      {/* <EventComponent /> */}
+
+      <StateComponent />
+
+    </>
   );
 }
 
