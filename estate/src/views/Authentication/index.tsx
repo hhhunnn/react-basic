@@ -1,11 +1,36 @@
 import React, { ChangeEvent, useState } from 'react'
 import './style.css';
-
+// 절대경로로 지정
 import SignInBackground from "assets/image/sign-in-background.png"
 import SignUpBackground from "assets/image/sign-up-background.png"
 import InputBox from 'components/Inputbox';
 
 type AuthPage = 'sign-in' | 'sign-up';
+
+interface SnsContainerProps {
+  title: string;
+}
+
+function SnsContainer({ title }: SnsContainerProps) {
+
+  const onSnsButtonClickHandler = (type: 'kakao' | 'naver') => {
+    alert(type);
+  };
+
+  return (
+    <div className="authentication-sns-container">
+      <div className="sns-container-title label">{title}</div>
+      <div className="sns-button-container">
+
+        {/* 에러 : event함수는 매개변수 형식이 호환되지 않음 */}
+        {/* <div className="sns-button kakao-button" onClick={onSnsButtonClickHandler}></div> */}
+        {/* 호출해야하기 때문에 onSnsButtonClickHandler뒤에 ('kakao') 작성해서 각각 호출해줘야함 */}
+        <div className="sns-button kakao-button" onClick={() => onSnsButtonClickHandler('kakao')}></div>
+        <div className="sns-button naver-button" onClick={() => onSnsButtonClickHandler('naver')}></div>
+      </div>
+    </div>
+  );
+}
 
 // 함수값 결정 화살표
 interface Props {
@@ -32,8 +57,8 @@ function SignIn({ onLinkClickHandler }: Props) {
   };
 
   return(
-    <div className='authentication-contents'>
-      <div className='authentication-input-container'>
+    <div className="authentication-contents">
+      <div className="authentication-input-container">
         <InputBox label="아이디" type="text" value={id} placeholder="아이디를 입력해주세요." onChangeHandler={onIdChangeHandler} />
         <InputBox label="비밀번호" type="password" value={password} placeholder="비밀번호를 입력해주세요." onChangeHandler={onPasswordChangeHandler} />
       </div>
@@ -42,7 +67,7 @@ function SignIn({ onLinkClickHandler }: Props) {
         <div id="sign-up-link" className="text-link" onClick={onLinkClickHandler}>회원가입</div>
       </div>
       <div className='short-divider'></div>
-      <div className='authentication-sns-container'></div>
+      <SnsContainer title="SNS 로그인" />
     </div>
 
   )
@@ -56,7 +81,7 @@ function SignUp ({ onLinkClickHandler }: Props) {
 
   return (
     <div className='authentication-contents'>
-      <div className='authentication-sns-container'></div>
+      <SnsContainer title="SNS 회원가입" />
       <div className='short-divider'></div>
       <div className='authentication-input-container'></div>
       <div className='authentication-button-container'>

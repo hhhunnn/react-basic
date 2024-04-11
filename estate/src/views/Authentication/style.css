@@ -65,3 +65,12 @@
     align-items: center;
     gap: 16px;
 }
+
+/* 상대경로로 지정 */
+.kakao-button {
+    background-image: url('../../assets/image/kakao-button.png');
+}
+
+.naver-button {
+    background-image: url('../../assets/image/naver-button.png')
+}
