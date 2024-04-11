@@ -8,9 +8,13 @@ export interface InputBoxProps {
     onChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;
     buttonTitle?: string;
+    buttonStatus?: boolean;
+    onButtonClickHandler?: () => void;
 }
 
-export default function InputBox({ label, type, value, placeholder, onChangeHandler, buttonTitle }: InputBoxProps) {
+export default function InputBox({ label, type, value, placeholder, onChangeHandler, buttonTitle, buttonStatus, onButtonClickHandler }: InputBoxProps) {
+
+    const buttonClass = buttonStatus ? 'input-primary-button' : 'input-disable-button';
 
     return (
         <div className="input-box">
@@ -24,7 +28,7 @@ export default function InputBox({ label, type, value, placeholder, onChangeHand
                     onChange={onChangeHandler}
                 />
                 { buttonTitle && 
-                <div className="input-disable-button">
+                <div className={buttonClass} onClick={onButtonClickHandler}>
                     {buttonTitle}
                 </div> 
                 }
