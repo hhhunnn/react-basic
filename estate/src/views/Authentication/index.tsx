@@ -44,6 +44,7 @@ function SignIn({ onLinkClickHandler }: Props) {
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+
   // event handler //
   const onIdChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setId(event.target.value);
@@ -89,6 +90,16 @@ function SignUp ({ onLinkClickHandler }: Props) {
   const [emailButtonStatus, setEmailButtonStatus] = useState<boolean>(false);
   const [authNumberButtonStatus, setAuthNumberButtonStatus] = useState<boolean>(false);
 
+  const [isIdCheck, setIdCheck] = useState<boolean>(false);
+  const [isEmailCheck, setEmailCheck] = useState<boolean>(false);
+  const [isAuthNumberCheck, setAuthNumberCheck] = useState<boolean>(false);
+
+  const isSignUpActive = isIdCheck && isEmailCheck && isAuthNumberCheck && password && passwordCheck;
+  // primary-button full-width / disable-button full-width
+  // const onSignUpButtonClass = ( isSignUpActive ? 'primary' : 'disable' ) + '-button full-width';
+  const onSignUpButtonClass = `${isSignUpActive ? 'primary' : 'disable'}-button full-width`;
+
+
   const onIdChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     // 한칸씩 밀림
     // setId(event.target.value);
@@ -98,6 +109,7 @@ function SignUp ({ onLinkClickHandler }: Props) {
     const { value } = event.target;
     setId(value);
     setIdButtonStatus(value !== '');
+    setIdCheck(false);
 };
 
 const onPasswordChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -114,56 +126,68 @@ const onEmailChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setEmail(value);
     setEmailButtonStatus(value !== '');
+    setEmailCheck(false);
+    setAuthNumberCheck(false);
 };
 
 const onAuthNumberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setAuthNumber(value);
     setAuthNumberButtonStatus(value !== '');
+    setAuthNumberCheck(false);
 };
 
 const onIdButtonClickHandler = () => {
     if(!idButtonStatus) return;
     alert(id);
+    setIdCheck(true);
 };
 
 const onEmailButtonClickHandler = () => {
     if(!emailButtonStatus) return;
     alert(email);
+    setEmailCheck(true);
 };
 
 const onAuthNumberButtonClickHandler = () => {
     if(!authNumberButtonStatus) return;
     alert(authNumber);
+    setAuthNumberCheck(true);
 };
 
+// 회원가입 버튼 
 const onSignUpButtonClickHandler = () => {
-
+  if(!isSignUpActive) return;
+    alert('회원가입');
 };
+
+
+
 
 //                    render                    //
 return (
-    <div className="authentication-contents">
-        <SnsContainer title="SNS 회원가입" />
-        <div className="short-divider"></div>
-        <div className="authentication-input-container">
+  <div className="authentication-contents">
+      <SnsContainer title="SNS 회원가입" />
+      <div className="short-divider"></div>
+      <div className="authentication-input-container">
 
-            <InputBox label="아이디" type="text" value={id} placeholder="아이디를 입력해주세요" onChangeHandler={onIdChangeHandler} buttonTitle="중복 확인" buttonStatus={idButtonStatus} onButtonClickHandler={onIdButtonClickHandler} />
+          <InputBox label="아이디" type="text" value={id} placeholder="아이디를 입력해주세요" onChangeHandler={onIdChangeHandler} buttonTitle="중복 확인" buttonStatus={idButtonStatus} onButtonClickHandler={onIdButtonClickHandler} error={false} message="사용 가능한 아이디입니다." />
 
-            <InputBox label="비밀번호" type="password" value={password} placeholder="비밀번호를 입력해주세요" onChangeHandler={onPasswordChangeHandler} />
+          <InputBox label="비밀번호" type="password" value={password} placeholder="비밀번호를 입력해주세요" onChangeHandler={onPasswordChangeHandler} />
 
-            <InputBox label="비밀번호 확인" type="password" value={passwordCheck} placeholder="비밀번호를 입력해주세요" onChangeHandler={onPasswordCheckChangeHandler} />
+          <InputBox label="비밀번호 확인" type="password" value={passwordCheck} placeholder="비밀번호를 입력해주세요" onChangeHandler={onPasswordCheckChangeHandler} />
 
-            <InputBox label="이메일" type="text" value={email} placeholder="이메일을 입력해주세요" onChangeHandler={onEmailChangeHandler} buttonTitle="이메일 인증" buttonStatus={emailButtonStatus} onButtonClickHandler={onEmailButtonClickHandler} />
+          <InputBox label="이메일" type="text" value={email} placeholder="이메일을 입력해주세요" onChangeHandler={onEmailChangeHandler} buttonTitle="이메일 인증" buttonStatus={emailButtonStatus} onButtonClickHandler={onEmailButtonClickHandler} />
 
-            <InputBox label="인증번호" type="text" value={authNumber} placeholder="인증번호 4자리를 입력해주세요" onChangeHandler={onAuthNumberChangeHandler} buttonTitle="인증 확인" buttonStatus={authNumberButtonStatus} onButtonClickHandler={onAuthNumberButtonClickHandler} />
+          {isEmailCheck && 
+          <InputBox label="인증번호" type="text" value={authNumber} placeholder="인증번호 4자리를 입력해주세요" onChangeHandler={onAuthNumberChangeHandler} buttonTitle="인증 확인" buttonStatus={authNumberButtonStatus} onButtonClickHandler={onAuthNumberButtonClickHandler} />}
 
-        </div>
-        <div className="authentication-button-container">
-            <div className="primary-button full-width" onClick={onSignUpButtonClickHandler}>회원가입</div>
-            <div className="text-link" onClick={onLinkClickHandler}>로그인</div>
-        </div>
-    </div>
+      </div>
+      <div className="authentication-button-container">
+          <div className={onSignUpButtonClass} onClick={onSignUpButtonClickHandler}>회원가입</div>
+          <div className="text-link" onClick={onLinkClickHandler}>로그인</div>
+      </div>
+  </div>
 );
 }
 
