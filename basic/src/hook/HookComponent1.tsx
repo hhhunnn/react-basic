@@ -15,6 +15,9 @@ import React, { useEffect, useState } from "react";
 // - 훅 함수는 반드시 컴포넌트의 코드블럭에 존재해야함
 // - 만약 컴포넌트의 코드 블럭 외에 존재하고 싶다면 그 코드 블럭은 반드시 훅 함수이어야 함
 
+// const [count, setCount] = useState<number>(0);
+
+
 export default function HookComponent1() {
 
     
@@ -22,6 +25,8 @@ export default function HookComponent1() {
     const [flag, setFlag] = useState<boolean>(false);
 
     const addCount = () => {
+
+        // const [count, setCount] = useState<number>(0);
         setCount(count + 1);
     };
 
