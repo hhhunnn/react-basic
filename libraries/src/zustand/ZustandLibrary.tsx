@@ -55,12 +55,13 @@ export default function ZustandLibrary() {
     }
 
     // zustan로 선언한 상태 사용
-    // const { 상태들, 상태변경함수득ㄹ}= useStoreZustand훅함수();
+    // const { 상태들, 상태변경함수들}= useStoreZustand훅함수();
     const {zNormal, setZNormal, increaseZNormal, decreaseZNormal} = useStore();
 
 
     return (
         <div>
+            <a href="http://localhost:3000/router">홈으로</a>
             <div>
                 <h4>useState 방식 : {normal}</h4>
                 <button onClick={decreaseNormal}>-</button>
@@ -72,7 +73,38 @@ export default function ZustandLibrary() {
                 <button onClick={decreaseZNormal}>-</button>
                 <button onClick={increaseZNormal}>+</button>
             </div>
-        </div>
+            <SubComponent1 normal={normal} increaseNormal={increaseNormal} decreaseNormal={decreaseNormal} />
+            <SubComponent2/>
+            </div>
     );
 }
 
+interface Sub1Props {
+    normal: number;
+    increaseNormal: () => void;
+    decreaseNormal: () => void;
+}
+
+function SubComponent1 ({ normal, increaseNormal, decreaseNormal }: Sub1Props) {
+
+    return (
+        <div>
+            <h5>Normal : {normal}</h5>
+            <button onClick={decreaseNormal}>-</button>
+            <button onClick={increaseNormal}>+</button>
+        </div>
+    )
+}
+
+function SubComponent2 () {
+
+    const { zNormal, increaseZNormal, decreaseZNormal } = useStore();
+
+    return (
+        <div>
+            <h5>Zustand : {zNormal}</h5>
+            <button onClick={decreaseZNormal}>-</button>
+            <button onClick={increaseZNormal}>+</button>
+        </div>
+    )
+}
