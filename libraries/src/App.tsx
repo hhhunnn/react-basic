@@ -14,6 +14,7 @@ function App() {
         <Route path='page2' element={<ReactRouterPage2 />} /> 
       </Route>
       <Route path='/zustand' element={<ZustandLibrary />} />
+      <Route path='*' element={<h3>404 Error</h3>} />
     </Routes>
   );
 }
