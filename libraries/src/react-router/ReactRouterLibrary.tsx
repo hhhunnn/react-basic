@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router-dom';
 
 // react-router 패키지(라이브러리) : 
 // - react의 SPA(Single Page Application)에서 라우팅을 구현하기 위한 라이브러리
@@ -66,11 +66,34 @@ export default function ReactRouterLibrary() {
 // http://localhost:3000/page1
 // http://localhost:3000/router/page1
 export function ReactRouterPage1() {
-    return <h1>페이지 1</h1>
+
+    // useParams :
+    // - <Route> 컴포넌트의 path 속성에 매칭되는 동적 URL 패턴에 따른 데이터를 받는 훅 함수
+    // - 해당 URL 경로에 대한 모든 동적 URL 패턴을 name, value 형태로 받아옴
+    // const pathVariable = useParams();
+
+    // useEffect(() => {
+    //     console.log(pathVariable);
+    // },[]);
+
+    const {value} = useParams();
+
+    return <h1>페이지 1 : {value}</h1>
 }
 
 // http://localhost:3000/page2
 // http://localhost:3000/router/page2
 export function ReactRouterPage2() {
-    return <h1>페이지 2</h1>
+
+    // useSearchParams:
+    // - 현재 URL에 있는 쿼리 문자열을 읽을 때 사용하는 훅 함수
+    // - 쿼리 문자열에 대한 배열을 반환
+    const [ queryString ] = useSearchParams();
+    const time = queryString.get('time');
+
+    useEffect(() => {
+        console.log(queryString);
+    }, []);
+
+    return <h1>페이지 2 : {time}</h1>
 }
